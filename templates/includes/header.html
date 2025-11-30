@@ -1,0 +1,45 @@
+<!-- Navegación -->
+<nav class="fixed w-full z-50 bg-white/95 backdrop-blur-sm shadow-sm transition-all duration-300 nav-blur" id="navbar">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex justify-between items-center h-20">
+            <!-- Logo -->
+            <div class="flex-shrink-0 flex items-center gap-2 cursor-pointer" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">
+                <div class="w-10 h-10 bg-primary rounded-lg flex items-center justify-center text-white text-xl">
+                    <i class="fa-solid fa-droplet"></i>
+                </div>
+                <div>
+                    <span class="font-bold text-2xl text-secondary tracking-tight">HOME DETAIL</span>
+                    <p class="text-xs text-gray-500 uppercase tracking-widest">Hidrolavado Profesional</p>
+                </div>
+            </div>
+
+            <!-- Desktop Menu -->
+            <div class="hidden md:flex space-x-8 items-center">
+                <a href="#inicio" class="text-gray-600 hover:text-primary font-medium transition">Inicio</a>
+                <a href="#servicios" class="text-gray-600 hover:text-primary font-medium transition">Servicios</a>
+                <a href="#antes-despues" class="text-gray-600 hover:text-primary font-medium transition">Resultados</a>
+                <a href="#zonas" class="text-gray-600 hover:text-primary font-medium transition">Zonas</a>
+                <a href="#faq" class="text-gray-600 hover:text-primary font-medium transition">FAQ</a>
+                <a href="#contacto" class="bg-primary hover:bg-primary-dark text-white px-5 py-2.5 rounded-full font-semibold transition shadow-lg shadow-red-200">
+                    Pedir Presupuesto
+                </a>
+            </div>
+
+            <!-- Mobile Button -->
+            <div class="md:hidden flex items-center">
+                <button id="mobile-menu-btn" class="text-gray-600 hover:text-primary focus:outline-none">
+                    <i class="fa-solid fa-bars text-2xl"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+    <!-- Mobile Menu Links -->
+    <div id="mobile-menu" class="md:hidden bg-white border-t">
+        <a href="#inicio" class="block py-3 px-4 text-gray-700 hover:bg-gray-50">Inicio</a>
+        <a href="#servicios" class="block py-3 px-4 text-gray-700 hover:bg-gray-50">Servicios</a>
+        <a href="#antes-despues" class="block py-3 px-4 text-gray-700 hover:bg-gray-50">Resultados</a>
+        <a href="#zonas" class="block py-3 px-4 text-gray-700 hover:bg-gray-50">Zonas</a>
+        <a href="#faq" class="block py-3 px-4 text-gray-700 hover:bg-gray-50">FAQ</a>
+        <a href="#contacto" class="block py-3 px-4 text-primary font-bold bg-gray-50">Pedir Presupuesto</a>
+    </div>
+</nav>
