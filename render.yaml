@@ -2,7 +2,7 @@ services:
   - type: web
     name: homedetail
     runtime: python
-    region: ohio  # o virginia/singapore según tu ubicación
+    region: ohio
     plan: free
     branch: main
     buildCommand: "./build.sh"
@@ -16,11 +16,11 @@ services:
         generateValue: true
       - key: DEBUG
         value: false
+      - key: DISABLE_COLLECTSTATIC
+        value: 0
       - key: ALLOWED_HOSTS
         sync: false
         value: .onrender.com
-      - key: DISABLE_COLLECTSTATIC
-        value: 0
       - key: RENDER_EXTERNAL_HOSTNAME
         fromService:
           type: web
@@ -37,4 +37,3 @@ databases:
     plan: free
     databaseName: homedetail
     user: homedetail_user
-    ipAllowList: []

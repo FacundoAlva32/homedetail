@@ -8,8 +8,20 @@
     <meta name="description" content="{% block meta_description %}Servicio de hidrolavado profesional en Zona Norte, Nordelta y GBA. Limpieza de pisos, fachadas, decks y techos. Presupuesto sin cargo.{% endblock %}">
     
     <!-- Tailwind CSS Mobile Optimized -->
-    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-    
+        <script src="https://cdn.tailwindcss.com"></script>
+        <script>
+            // Configuración mínima mientras se soluciona
+            tailwind.config = {
+                theme: {
+                    extend: {
+                        colors: {
+                            primary: '#dc2626',
+                            'primary-dark': '#b91c1c',
+                        }
+                    }
+                }
+            }
+        </script>
     <!-- Configuración Mobile-First -->
     <script>
         tailwind.config = {

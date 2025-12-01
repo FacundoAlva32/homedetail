@@ -35,15 +35,22 @@ DEBUG = os.environ.get('DEBUG', 'False') == 'True'
 
 # Allowed hosts for production
 ALLOWED_HOSTS = []
+
+# Add allowed hosts from environment
 if os.environ.get('ALLOWED_HOSTS'):
     ALLOWED_HOSTS.extend(os.environ.get('ALLOWED_HOSTS').split(','))
-else:
-    ALLOWED_HOSTS = ['localhost', '127.0.0.1']
 
 # Add Render host dynamically
 RENDER_EXTERNAL_HOSTNAME = os.environ.get('RENDER_EXTERNAL_HOSTNAME')
 if RENDER_EXTERNAL_HOSTNAME:
     ALLOWED_HOSTS.append(RENDER_EXTERNAL_HOSTNAME)
+
+# Add default hosts for development
+if DEBUG:
+    ALLOWED_HOSTS.extend(['localhost', '127.0.0.1', '0.0.0.0'])
+else:
+    # In production, add render domain
+    ALLOWED_HOSTS.append('.onrender.com')
 
 # Application definition
 INSTALLED_APPS = [
@@ -62,7 +69,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
-    'whitenoise.middleware.WhiteNoiseMiddleware',  # Para servir archivos estáticos
+    'whitenoise.middleware.WhiteNoiseMiddleware',  # WhiteNoise para archivos estáticos
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -97,12 +104,24 @@ WSGI_APPLICATION = 'homedetail.wsgi.application'
 
 # Configuración de base de datos para Render
 DATABASES = {
-    'default': dj_database_url.config(
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
+    }
+}
+
+# Usar PostgreSQL en Render si DATABASE_URL está disponible
+if os.environ.get('DATABASE_URL'):
+    DATABASES['default'] = dj_database_url.config(
         default=os.environ.get('DATABASE_URL'),
         conn_max_age=600,
         conn_health_checks=True,
     )
-}
+    # Forzar SSL en producción
+    if not DEBUG:
+        DATABASES['default']['OPTIONS'] = {
+            'sslmode': 'require',
+        }
 
 # Password validation
 # https://docs.djangoproject.com/en/5.0/ref/settings/#auth-password-validators
@@ -136,19 +155,32 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
 
-# Configuración de archivos estáticos
+# Configuración de archivos estáticos CRÍTICA PARA RENDER
 STATIC_URL = '/static/'
 
-# Directorio donde se recolectarán los archivos estáticos
-STATIC_ROOT = BASE_DIR / 'staticfiles'
-
-# Directorios adicionales para archivos estáticos
+# Directorios donde buscar archivos estáticos
 STATICFILES_DIRS = [
     BASE_DIR / 'static',
 ]
 
+# Directorio donde se recolectarán los archivos estáticos en producción
+STATIC_ROOT = BASE_DIR / 'staticfiles'
+
 # Configuración de WhiteNoise para servir archivos estáticos
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+if not DEBUG:
+    # Solo usar almacenamiento comprimido en producción
+    STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+    
+    # Configuración adicional de WhiteNoise para evitar problemas
+    WHITENOISE_MANIFEST_STRICT = False
+    WHITENOISE_USE_FINDERS = True
+    WHITENOISE_AUTOREFRESH = False
+    
+    # Cache estáticos por 1 año (puede cambiar a menor tiempo si actualizas mucho)
+    WHITENOISE_MAX_AGE = 31536000  # 1 año en segundos
+else:
+    # En desarrollo, usar el backend por defecto
+    STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.StaticFilesStorage'
 
 # Media files (uploads)
 MEDIA_URL = '/media/'
@@ -176,6 +208,9 @@ if not DEBUG:
     SECURE_BROWSER_XSS_FILTER = True
     SECURE_CONTENT_TYPE_NOSNIFF = True
     X_FRAME_OPTIONS = 'DENY'
+    
+    # Security middleware settings
+    SECURE_REFERRER_POLICY = 'strict-origin-when-cross-origin'
 
 # Email configuration (opcional para producción)
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
@@ -206,6 +241,11 @@ LOGGING = {
             'class': 'logging.StreamHandler',
             'formatter': 'simple',
         },
+        'file': {
+            'class': 'logging.FileHandler',
+            'filename': os.path.join(BASE_DIR, 'debug.log'),
+            'formatter': 'verbose',
+        },
     },
     'root': {
         'handlers': ['console'],
@@ -213,15 +253,17 @@ LOGGING = {
     },
     'loggers': {
         'django': {
-            'handlers': ['console'],
+            'handlers': ['console', 'file'],
             'level': os.environ.get('DJANGO_LOG_LEVEL', 'INFO'),
+            'propagate': False,
+        },
+        'whitenoise': {
+            'handlers': ['console'],
+            'level': 'ERROR',
             'propagate': False,
         },
     },
 }
-
-# Whitenoise compression
-WHITENOISE_MANIFEST_STRICT = False
 
 # Cache configuration (simple in-memory cache)
 CACHES = {
@@ -241,10 +283,7 @@ CSRF_TRUSTED_ORIGINS = []
 if os.environ.get('CSRF_TRUSTED_ORIGINS'):
     CSRF_TRUSTED_ORIGINS.extend(os.environ.get('CSRF_TRUSTED_ORIGINS').split(','))
 else:
-    CSRF_TRUSTED_ORIGINS = ['https://*.onrender.com']
-
-# Security middleware settings
-SECURE_REFERRER_POLICY = 'strict-origin-when-cross-origin'
+    CSRF_TRUSTED_ORIGINS = ['https://*.onrender.com', 'https://*.homedetail.com']
 
 # File upload settings
 FILE_UPLOAD_MAX_MEMORY_SIZE = 2621440  # 2.5 MB
@@ -264,3 +303,30 @@ DATABASE_CONNECTION_TIMEOUT = 30
 
 # Gunicorn workers (configuración para producción)
 GUNICORN_WORKERS = os.environ.get('GUNICORN_WORKERS', 2)
+
+# Render specific settings
+RENDER = {
+    'ENABLE_WHITENOISE': True,
+    'STATIC_URL': '/static/',
+}
+
+# Test if static files are being served correctly
+def check_static_settings():
+    """Función para verificar configuración de archivos estáticos"""
+    import sys
+    if 'collectstatic' not in sys.argv and 'test' not in sys.argv:
+        print(f"DEBUG: {DEBUG}")
+        print(f"STATIC_URL: {STATIC_URL}")
+        print(f"STATIC_ROOT: {STATIC_ROOT}")
+        print(f"STATICFILES_DIRS: {STATICFILES_DIRS}")
+        print(f"STATICFILES_STORAGE: {STATICFILES_STORAGE}")
+        if os.path.exists(STATIC_ROOT):
+            print(f"STATIC_ROOT existe: Sí")
+            static_files = len(list(STATIC_ROOT.rglob('*')))
+            print(f"Archivos en STATIC_ROOT: {static_files}")
+        else:
+            print(f"STATIC_ROOT existe: No")
+
+# Llamar al check al cargar settings (solo en desarrollo)
+if DEBUG:
+    check_static_settings()
