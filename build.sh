@@ -1,15 +1,31 @@
 #!/usr/bin/env bash
-# build.sh
+# build.sh - Script de construcción para Render
 
-echo "🚀 Iniciando build de Home Detail..."
+echo "========================================="
+echo "🚀 INICIANDO DEPLOYMENT DE HOME DETAIL"
+echo "========================================="
 
-# Instalar dependencias
+# Mostrar información del entorno
+echo "Python version: $(python --version)"
+echo "Pip version: $(pip --version)"
+
+# 1. Instalar dependencias
+echo "📦 Instalando dependencias..."
+pip install --upgrade pip
 pip install -r requirements.txt
 
-# Recolectar archivos estáticos
-python manage.py collectstatic --noinput
+# 2. Recolectar archivos estáticos
+echo "🎨 Recolectando archivos estáticos..."
+python manage.py collectstatic --noinput --clear
 
-# Aplicar migraciones
-python manage.py migrate
+# 3. Aplicar migraciones de base de datos
+echo "🗄️ Aplicando migraciones..."
+python manage.py migrate --noinput
 
-echo "✅ Build completado!"
+# 4. Verificar que todo esté correcto
+echo "🔍 Verificando configuración..."
+python manage.py check --deploy
+
+echo "========================================="
+echo "✅ DEPLOYMENT COMPLETADO EXITOSAMENTE"
+echo "========================================="
