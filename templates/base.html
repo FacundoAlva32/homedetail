@@ -1,72 +1,118 @@
 <!DOCTYPE html>
+{% load static %}
 <html lang="es" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>{% block title %}Home Detail | Hidrolavado Profesional en Zona Norte{% endblock %}</title>
     <meta name="description" content="{% block meta_description %}Servicio de hidrolavado profesional en Zona Norte, Nordelta y GBA. Limpieza de pisos, fachadas, decks y techos. Presupuesto sin cargo.{% endblock %}">
     
-    <!-- Tailwind CSS -->
+    <!-- Tailwind CSS Mobile Optimized -->
     <script src="https://cdn.tailwindcss.com"></script>
     
-    <!-- Configuración de Colores Rojo/Gris -->
+    <!-- Configuración Mobile-First -->
     <script>
         tailwind.config = {
             theme: {
+                screens: {
+                    'xs': '375px',
+                    'sm': '640px',
+                    'md': '768px',
+                    'lg': '1024px',
+                    'xl': '1280px',
+                    '2xl': '1536px',
+                },
                 extend: {
                     colors: {
-                        primary: '#dc2626',   /* Rojo principal */
+                        primary: '#dc2626',
                         'primary-dark': '#b91c1c',
                         'primary-light': '#fecaca',
-                        secondary: '#374151', /* Gris oscuro */
+                        secondary: '#374151',
                         'secondary-dark': '#1f2937',
-                        accent: '#d97706',    /* Naranja para acentos */
+                        accent: '#d97706',
                         light: '#f9fafb',
                     },
                     fontFamily: {
-                        sans: ['Inter', 'sans-serif'],
+                        sans: ['Inter', 'system-ui', '-apple-system', 'sans-serif'],
                     },
-                    animation: {
-                        'bounce-slow': 'bounce-slow 2s infinite',
+                    fontSize: {
+                        'xs': ['0.75rem', { lineHeight: '1rem' }],
+                        'sm': ['0.875rem', { lineHeight: '1.25rem' }],
+                        'base': ['1rem', { lineHeight: '1.5rem' }],
+                        'lg': ['1.125rem', { lineHeight: '1.75rem' }],
+                        'xl': ['1.25rem', { lineHeight: '1.75rem' }],
+                        '2xl': ['1.5rem', { lineHeight: '2rem' }],
+                        '3xl': ['1.875rem', { lineHeight: '2.25rem' }],
+                        '4xl': ['2.25rem', { lineHeight: '2.5rem' }],
+                        '5xl': ['3rem', { lineHeight: '1' }],
+                        '6xl': ['3.75rem', { lineHeight: '1' }],
+                    },
+                    spacing: {
+                        '18': '4.5rem',
+                        '88': '22rem',
+                        '128': '32rem',
                     }
                 }
+            },
+            corePlugins: {
+                container: false,
             }
         }
     </script>
 
-    <!-- Fuentes e Iconos -->
+    <!-- Fuentes optimizadas para mobile -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
-    <!-- AOS Library -->
+    <!-- AOS Library (lightweight version para mobile) -->
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 
-    <!-- CSS Personalizado -->
-    {% load static %}
+    <!-- CSS Personalizado Mobile-Optimized -->
     <link rel="stylesheet" href="{% static 'css/main.css' %}">
     
     {% block extra_css %}{% endblock %}
 </head>
-<body class="bg-gray-50 text-gray-800">
+<body class="bg-gray-50 text-gray-800 overflow-x-hidden">
     {% include 'includes/header.html' %}
     
-    <main>
+    <main class="overflow-x-hidden">
         {% block content %}
         {% endblock %}
     </main>
     
     {% include 'includes/footer.html' %}
     
-    <!-- Botón Flotante WhatsApp -->
-    <a href="https://wa.me/5491160971596?text=Hola,%20me%20gustaría%20pedir%20un%20presupuesto%20para..." target="_blank" class="fixed bottom-6 right-6 bg-green-500 hover:bg-green-600 text-white w-16 h-16 rounded-full flex items-center justify-center text-3xl shadow-xl transition-transform hover:scale-110 z-50 animate-bounce-slow">
+    <!-- Botón WhatsApp Mobile-Optimized -->
+    <a href="https://wa.me/5491160971596?text=Hola,%20me%20gustaría%20pedir%20un%20presupuesto%20para..." 
+       target="_blank" 
+       class="fixed bottom-6 right-4 xs:right-6 bg-green-500 hover:bg-green-600 text-white w-14 h-14 xs:w-16 xs:h-16 rounded-full flex items-center justify-center text-2xl xs:text-3xl shadow-xl transition-transform active:scale-95 z-50 animate-bounce-slow touch-manipulation">
         <i class="fa-brands fa-whatsapp"></i>
+        <span class="sr-only">WhatsApp</span>
     </a>
 
-    <!-- Scripts -->
+    <!-- Scripts Mobile-Optimized -->
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     
     <!-- JS Personalizado -->
     <script src="{% static 'js/main.js' %}"></script>
+    
+    <!-- AOS Initialization Mobile-Optimized -->
+    <script>
+        // AOS más ligero para mobile
+        document.addEventListener('DOMContentLoaded', function() {
+            if (typeof AOS !== 'undefined') {
+                AOS.init({
+                    duration: 600,
+                    once: true,
+                    offset: 50,
+                    disable: window.innerWidth < 640 ? true : false
+                });
+            }
+        });
+        
+        // Prevenir zoom en inputs en iOS
+        document.addEventListener('touchstart', function() {}, {passive: true});
+    </script>
     
     {% block extra_js %}{% endblock %}
 </body>

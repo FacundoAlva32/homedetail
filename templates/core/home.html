@@ -1,8 +1,8 @@
 {% extends 'base.html' %}
-
+{% load static%}
 {% block content %}
-<!-- Hero Section Mejorada con Video Background -->
-<section id="inicio" class="relative h-screen min-h-[800px] flex items-center justify-center overflow-hidden">
+<!-- Hero Section Ultra Mobile-Optimized -->
+<section id="inicio" class="relative min-h-[100svh] flex items-center justify-center overflow-hidden bg-gray-900">
     <!-- Video Background -->
     <div class="absolute inset-0 z-0">
         <video 
@@ -10,68 +10,76 @@
             muted 
             loop 
             playsinline 
-            class="w-full h-full object-cover"
-            poster="https://images.unsplash.com/photo-1621905252507-b35492cc74b4?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80">
-            <source src="../../static/videos/WhatsApp Video 2025-11-25 at 7.51.36 PM.mp4"type="video/mp4">
-            <!-- Fallback image si el video no carga -->
-            <img src="https://images.unsplash.com/photo-1621905252507-b35492cc74b4?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80" alt="Hidrolavado profesional" class="w-full h-full object-cover">
+            preload="metadata"
+            class="w-full h-full object-cover">
+            <source src="{% static 'media/videos/videcarrusel.mp4' %}" type="video/mp4">
         </video>
-        <!-- Overlay oscuro para mejor legibilidad -->
-        <div class="absolute inset-0 bg-gradient-to-r from-gray-900/80 to-gray-900/50"></div>
+        <!-- Overlay mejorado -->
+        <div class="absolute inset-0 bg-gradient-to-br from-gray-900/90 via-gray-900/70 to-primary/20"></div>
     </div>
 
     <!-- Contenido Principal -->
-    <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
-        <div class="grid lg:grid-cols-2 gap-12 items-center">
+    <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full py-12">
+        <div class="flex flex-col lg:flex-row items-center gap-8 lg:gap-12">
             <!-- Texto Principal -->
-            <div class="text-white" data-aos="fade-right">
-                <div class="inline-block bg-primary/20 border border-primary/30 rounded-full px-4 py-1 mb-6 backdrop-blur-md">
-                    <span class="text-red-200 font-semibold text-sm tracking-wide">ESPECIALISTAS EN ZONA NORTE</span>
+            <div class="text-white text-center lg:text-left lg:w-1/2" data-aos="fade-right">
+                <div class="inline-flex items-center gap-2 bg-primary/20 border border-primary/30 rounded-full px-4 py-2 mb-6 backdrop-blur-sm">
+                    <i class="fas fa-star text-primary-light text-sm"></i>
+                    <span class="text-red-100 font-semibold text-xs sm:text-sm tracking-wide">ESPECIALISTAS EN ZONA NORTE</span>
                 </div>
-                <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-6 text-shadow">
-                    Transformamos tus <span class="text-primary">espacios exteriores</span>
+                
+                <h1 class="text-3xl sm:text-4xl md:text-5xl font-bold leading-tight mb-4 sm:mb-6">
+                    <span class="block text-white mb-2">Transformamos tus</span>
+                    <span class="text-primary bg-gradient-to-r from-primary to-primary-light bg-clip-text text-transparent">
+                        espacios exteriores
+                    </span>
                 </h1>
-                <p class="text-xl md:text-2xl text-gray-300 mb-8 leading-relaxed">
-                    Hidrolavado profesional que devuelve el brillo y la vida a tus superficies. Resultados garantizados.
+                
+                <p class="text-base sm:text-lg md:text-xl text-gray-300 mb-6 sm:mb-8 leading-relaxed max-w-2xl mx-auto lg:mx-0">
+                    Hidrolavado profesional que devuelve el brillo y la vida a tus superficies. 
+                    <span class="block mt-1 font-medium">Resultados garantizados en 24h.</span>
                 </p>
-                <div class="flex flex-col sm:flex-row gap-4 mb-12">
-                    <a href="https://wa.me/5491160971596?text=Hola,%20me%20gustaría%20pedir%20un%20presupuesto%20para..." 
+                
+                <!-- Botones de acción -->
+                <div class="flex flex-col sm:flex-row gap-3 sm:gap-4 mb-8 sm:mb-12 max-w-md mx-auto lg:mx-0">
+                    <a href="https://wa.me/5491160971596?text=Hola,%20me%20gustaría%20pedir%20un%20presupuesto%20para...{{ company_info.company_whatsapp }}?text=Hola%20Home%20Detail,%20me%20gustaría%20pedir%20un%20presupuesto%20para..." 
                        target="_blank" 
-                       class="whatsapp-button bg-green-500 hover:bg-green-600 text-white px-8 py-4 rounded-full font-bold text-center transition flex items-center justify-center gap-2 shadow-lg shadow-green-900/20 transform hover:scale-105">
-                        <i class="fa-brands fa-whatsapp text-xl"></i> 
-                        Presupuesto Inmediato
+                       rel="noopener noreferrer"
+                       class="whatsapp-button bg-whatsapp hover:bg-green-600 text-white px-6 sm:px-8 py-3.5 sm:py-4 rounded-full font-bold text-center transition-all flex items-center justify-center gap-2 shadow-xl shadow-green-900/30 hover:shadow-2xl active:scale-95 touch-manipulation group">
+                        <i class="fa-brands fa-whatsapp text-xl sm:text-2xl group-hover:scale-110 transition-transform"></i> 
+                        <span>Presupuesto Inmediato</span>
                     </a>
                     <a href="#servicios" 
-                       class="bg-white/10 hover:bg-white/20 border border-white/30 text-white px-8 py-4 rounded-full font-bold text-center transition backdrop-blur-sm transform hover:scale-105">
-                        Ver Nuestros Trabajos
+                       class="bg-white/10 hover:bg-white/20 border border-white/30 text-white px-6 sm:px-8 py-3.5 sm:py-4 rounded-full font-bold text-center transition-all backdrop-blur-sm hover:scale-105 active:scale-95 touch-manipulation">
+                        Ver Servicios
                     </a>
                 </div>
 
                 <!-- Trust Badges Mejorados -->
-                <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
-                    <div class="text-center p-4 bg-white/10 rounded-lg backdrop-blur-sm">
-                        <div class="text-2xl font-bold text-primary mb-1">500+</div>
-                        <div class="text-sm text-gray-300">Clientes</div>
+                <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4 max-w-xl mx-auto lg:mx-0">
+                    <div class="text-center p-3 sm:p-4 bg-white/5 rounded-xl backdrop-blur-sm border border-white/10 hover:border-primary/50 transition">
+                        <div class="text-xl sm:text-2xl font-bold text-primary mb-1">---</div>
+                        <div class="text-xs sm:text-sm text-gray-300">Clientes</div>
                     </div>
-                    <div class="text-center p-4 bg-white/10 rounded-lg backdrop-blur-sm">
-                        <div class="text-2xl font-bold text-primary mb-1">24h</div>
-                        <div class="text-sm text-gray-300">Respuesta</div>
+                    <div class="text-center p-3 sm:p-4 bg-white/5 rounded-xl backdrop-blur-sm border border-white/10 hover:border-primary/50 transition">
+                        <div class="text-xl sm:text-2xl font-bold text-primary mb-1">24h</div>
+                        <div class="text-xs sm:text-sm text-gray-300">Respuesta</div>
                     </div>
-                    <div class="text-center p-4 bg-white/10 rounded-lg backdrop-blur-sm">
-                        <div class="text-2xl font-bold text-primary mb-1">100%</div>
-                        <div class="text-sm text-gray-300">Garantía</div>
+                    <div class="text-center p-3 sm:p-4 bg-white/5 rounded-xl backdrop-blur-sm border border-white/10 hover:border-primary/50 transition">
+                        <div class="text-xl sm:text-2xl font-bold text-primary mb-1">---</div>
+                        <div class="text-xs sm:text-sm text-gray-300">Garantía</div>
                     </div>
-                    <div class="text-center p-4 bg-white/10 rounded-lg backdrop-blur-sm">
-                        <div class="text-2xl font-bold text-primary mb-1">$0</div>
-                        <div class="text-sm text-gray-300">Presupuesto</div>
+                    <div class="text-center p-3 sm:p-4 bg-white/5 rounded-xl backdrop-blur-sm border border-white/10 hover:border-primary/50 transition">
+                        <div class="text-xl sm:text-2xl font-bold text-primary mb-1">---</div>
+                        <div class="text-xs sm:text-sm text-gray-300">Presupuesto</div>
                     </div>
                 </div>
             </div>
 
             <!-- Carrusel de Resultados -->
-            <div class="relative" data-aos="fade-left">
-                <div class="bg-white/10 backdrop-blur-md rounded-2xl p-6 border border-white/20">
-                    <h3 class="text-xl font-bold text-white mb-6 text-center">Resultados Instantáneos</h3>
+            <div class="lg:w-1/2 mt-8 lg:mt-0" data-aos="fade-left">
+                <div class="bg-white/10 backdrop-blur-md rounded-2xl p-4 sm:p-6 border border-white/20 max-w-lg mx-auto">
+                    <h3 class="text-lg sm:text-xl font-bold text-white mb-4 sm:mb-6 text-center">Resultados Instantáneos</h3>
                     
                     <!-- Carrusel Container -->
                     <div class="relative overflow-hidden rounded-xl">
@@ -79,14 +87,15 @@
                             <!-- Slide 1 -->
                             <div class="carousel-slide active">
                                 <div class="relative">
-                                    <img src="https://images.unsplash.com/photo-1541971875076-8f887e3879a9?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" 
+                                    <img src="https://images.unsplash.com/photo-1541971875076-8f887e3879a9?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" 
                                          alt="Vereda limpia" 
-                                         class="w-full h-64 object-cover rounded-lg">
-                                    <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-4 rounded-b-lg">
+                                         class="w-full h-48 sm:h-64 object-cover rounded-lg"
+                                         loading="lazy">
+                                    <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/90 via-black/70 to-transparent p-3 sm:p-4 rounded-b-lg">
                                         <div class="text-white">
                                             <div class="flex justify-between items-center">
-                                                <span class="font-semibold">Veredas y Patios</span>
-                                                <span class="text-green-400 text-sm">+95% Limpieza</span>
+                                                <span class="font-semibold text-sm sm:text-base">Veredas y Patios</span>
+                                                <span class="text-green-400 text-xs sm:text-sm font-medium">+95% Limpieza</span>
                                             </div>
                                         </div>
                                     </div>
@@ -96,14 +105,15 @@
                             <!-- Slide 2 -->
                             <div class="carousel-slide">
                                 <div class="relative">
-                                    <img src="https://images.unsplash.com/photo-1568605114967-8130f3a36994?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" 
+                                    <img src="https://images.unsplash.com/photo-1568605114967-8130f3a36994?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" 
                                          alt="Fachada limpia" 
-                                         class="w-full h-64 object-cover rounded-lg">
-                                    <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-4 rounded-b-lg">
+                                         class="w-full h-48 sm:h-64 object-cover rounded-lg"
+                                         loading="lazy">
+                                    <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/90 via-black/70 to-transparent p-3 sm:p-4 rounded-b-lg">
                                         <div class="text-white">
                                             <div class="flex justify-between items-center">
-                                                <span class="font-semibold">Fachadas</span>
-                                                <span class="text-green-400 text-sm">+90% Limpieza</span>
+                                                <span class="font-semibold text-sm sm:text-base">Fachadas</span>
+                                                <span class="text-green-400 text-xs sm:text-sm font-medium">+90% Limpieza</span>
                                             </div>
                                         </div>
                                     </div>
@@ -113,49 +123,42 @@
                             <!-- Slide 3 -->
                             <div class="carousel-slide">
                                 <div class="relative">
-                                    <img src="https://images.unsplash.com/photo-1586023492125-27b2c045efd7?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" 
+                                    <img src="https://images.unsplash.com/photo-1586023492125-27b2c045efd7?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" 
                                          alt="Deck limpio" 
-                                         class="w-full h-64 object-cover rounded-lg">
-                                    <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-4 rounded-b-lg">
+                                         class="w-full h-48 sm:h-64 object-cover rounded-lg"
+                                         loading="lazy">
+                                    <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/90 via-black/70 to-transparent p-3 sm:p-4 rounded-b-lg">
                                         <div class="text-white">
                                             <div class="flex justify-between items-center">
-                                                <span class="font-semibold">Decks de Madera</span>
-                                                <span class="text-green-400 text-sm">+85% Recuperación</span>
+                                                <span class="font-semibold text-sm sm:text-base">Decks de Madera</span>
+                                                <span class="text-green-400 text-xs sm:text-sm font-medium">+85% Recuperación</span>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        
-                        <!-- Controles del Carrusel -->
-                        <div class="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex space-x-2">
-                            <button class="carousel-dot w-3 h-3 rounded-full bg-white/50 hover:bg-white transition" data-slide="0"></button>
-                            <button class="carousel-dot w-3 h-3 rounded-full bg-white/50 hover:bg-white transition" data-slide="1"></button>
-                            <button class="carousel-dot w-3 h-3 rounded-full bg-white/50 hover:bg-white transition" data-slide="2"></button>
-                        </div>
-                        
                         <!-- Flechas de Navegación -->
-                        <button class="carousel-prev absolute left-2 top-1/2 transform -translate-y-1/2 bg-white/20 hover:bg-white/30 text-white p-2 rounded-full transition backdrop-blur-sm">
-                            <i class="fa-solid fa-chevron-left"></i>
+                        <button class="carousel-prev absolute left-2 top-1/2 transform -translate-y-1/2 bg-black/30 hover:bg-black/50 text-white p-2 rounded-full transition backdrop-blur-sm active:scale-95 touch-manipulation">
+                            <i class="fa-solid fa-chevron-left text-sm sm:text-base"></i>
                         </button>
-                        <button class="carousel-next absolute right-2 top-1/2 transform -translate-y-1/2 bg-white/20 hover:bg-white/30 text-white p-2 rounded-full transition backdrop-blur-sm">
-                            <i class="fa-solid fa-chevron-right"></i>
+                        <button class="carousel-next absolute right-2 top-1/2 transform -translate-y-1/2 bg-black/30 hover:bg-black/50 text-white p-2 rounded-full transition backdrop-blur-sm active:scale-95 touch-manipulation">
+                            <i class="fa-solid fa-chevron-right text-sm sm:text-base"></i>
                         </button>
                     </div>
                     
                     <!-- Indicadores de Servicios Rápidos -->
-                    <div class="grid grid-cols-3 gap-3 mt-6">
-                        <div class="text-center p-3 bg-primary/20 rounded-lg border border-primary/30">
-                            <i class="fa-solid fa-road text-primary text-lg mb-1"></i>
+                    <div class="grid grid-cols-3 gap-2 sm:gap-3 mt-4 sm:mt-6">
+                        <div class="text-center p-2 sm:p-3 bg-primary/10 rounded-lg border border-primary/20 hover:border-primary/50 transition">
+                            <i class="fa-solid fa-road text-primary text-base sm:text-lg mb-1"></i>
                             <div class="text-white text-xs font-medium">Veredas</div>
                         </div>
-                        <div class="text-center p-3 bg-primary/20 rounded-lg border border-primary/30">
-                            <i class="fa-solid fa-building text-primary text-lg mb-1"></i>
+                        <div class="text-center p-2 sm:p-3 bg-primary/10 rounded-lg border border-primary/20 hover:border-primary/50 transition">
+                            <i class="fa-solid fa-building text-primary text-base sm:text-lg mb-1"></i>
                             <div class="text-white text-xs font-medium">Fachadas</div>
                         </div>
-                        <div class="text-center p-3 bg-primary/20 rounded-lg border border-primary/30">
-                            <i class="fa-solid fa-swimming-pool text-primary text-lg mb-1"></i>
+                        <div class="text-center p-2 sm:p-3 bg-primary/10 rounded-lg border border-primary/20 hover:border-primary/50 transition">
+                            <i class="fa-solid fa-swimming-pool text-primary text-base sm:text-lg mb-1"></i>
                             <div class="text-white text-xs font-medium">Piscinas</div>
                         </div>
                     </div>
@@ -165,171 +168,289 @@
     </div>
 
     <!-- Scroll Down Indicator -->
-    <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-10">
-        <a href="#servicios" class="text-white hover:text-primary transition animate-bounce">
-            <i class="fa-solid fa-chevron-down text-2xl"></i>
+    <div class="absolute bottom-4 sm:bottom-8 left-1/2 transform -translate-x-1/2 z-10">
+        <a href="#servicios" class="text-white hover:text-primary transition animate-bounce block p-2">
+            <i class="fa-solid fa-chevron-down text-xl sm:text-2xl"></i>
         </a>
     </div>
 </section>
 
-<!-- Sección de Transformación Mejorada -->
-<section id="antes-despues" class="py-20 bg-white">
+<!-- Nueva Sección: Por Qué Elegirnos 
+<section id="por-que-elegirnos" class="py-16 sm:py-20 bg-gradient-to-b from-white to-gray-50">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center mb-16" data-aos="fade-up">
-            <h2 class="text-primary font-bold tracking-wide uppercase text-sm mb-2">Resultados Reales</h2>
-            <h3 class="text-3xl md:text-4xl font-bold text-secondary">Transformaciones que Hablan por Sí Solas</h3>
-            <p class="mt-4 text-gray-600 max-w-2xl mx-auto">Deslizá en cada imagen para ver el increíble cambio que logramos en cada trabajo</p>
+        <div class="text-center mb-12 sm:mb-16" data-aos="fade-up">
+            <h2 class="text-primary font-bold tracking-wide uppercase text-sm mb-2">Ventajas</h2>
+            <h3 class="text-2xl sm:text-3xl md:text-4xl font-bold text-secondary mb-4">¿Por qué elegir Home detail?</h3>
+            <p class="text-gray-600 max-w-2xl mx-auto text-sm sm:text-base">Trabajamos con estándares de calidad que nos diferencian de la competencia</p>
+        </div>
+
+        <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8">
+            <div class="bg-white p-6 rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300 border border-gray-200 group" data-aos="fade-up" data-aos-delay="100">
+                <div class="w-12 h-12 bg-red-50 rounded-xl flex items-center justify-center text-primary text-xl mb-4 group-hover:bg-primary group-hover:text-white transition service-icon-card-hover">
+                    <i class="fa-solid fa-bolt"></i>
+                </div>
+                <h4 class="text-lg font-bold text-secondary mb-2">Respuesta Inmediata</h4>
+                <p class="text-gray-600 text-sm">Cotizamos en menos de 24 horas. Sin vueltas ni trámites burocráticos.</p>
+            </div>
+
+            <div class="bg-white p-6 rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300 border border-gray-200 group" data-aos="fade-up" data-aos-delay="200">
+                <div class="w-12 h-12 bg-red-50 rounded-xl flex items-center justify-center text-primary text-xl mb-4 group-hover:bg-primary group-hover:text-white transition service-icon-card-hover">
+                    <i class="fa-solid fa-shield-halved"></i>
+                </div>
+
+            </div>
+            <div class="bg-white p-6 rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300 border border-gray-200 group" data-aos="fade-up" data-aos-delay="300">
+                <div class="w-12 h-12 bg-red-50 rounded-xl flex items-center justify-center text-primary text-xl mb-4 group-hover:bg-primary group-hover:text-white transition service-icon-card-hover">
+                    <i class="fa-solid fa-user-tie"></i>
+                </div>
+                <h4 class="text-lg font-bold text-secondary mb-2">Profesionales Certificados</h4>
+                <p class="text-gray-600 text-sm">Nuestro equipo tiene +5 años de experiencia en hidrolavado de alta presión.</p>
+            </div>
+
+            <div class="bg-white p-6 rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300 border border-gray-200 group" data-aos="fade-up" data-aos-delay="400">
+                <div class="w-12 h-12 bg-red-50 rounded-xl flex items-center justify-center text-primary text-xl mb-4 group-hover:bg-primary group-hover:text-white transition service-icon-card-hover">
+                    <i class="fa-solid fa-truck"></i>
+                </div>
+                <h4 class="text-lg font-bold text-secondary mb-2">Equipos de Última</h4>
+                <p class="text-gray-600 text-sm">Trabajamos con hidrolavadoras de alta gama que aseguran resultados impecables.</p>
+            </div>
+        </div>
+    </div>
+</section> -->
+
+<!-- Sección de Transformación Mejorada -->
+<section id="antes-despues" class="py-16 sm:py-20 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-12 sm:mb-16" data-aos="fade-up">
+            <h2 class="text-primary font-bold tracking-wide uppercase text-sm mb-2">Comparativas</h2>
+            <h3 class="text-2xl sm:text-3xl md:text-4xl font-bold text-secondary">Antes y Después Real</h3>
+            <p class="mt-3 sm:mt-4 text-gray-600 max-w-2xl mx-auto text-sm sm:text-base">Deslizá en cada imagen para ver el increíble cambio que logramos en cada trabajo</p>
         </div>
 
         <!-- Grid de Resultados -->
-        <div class="results-grid">
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
             <!-- Resultado 1 - Veredas -->
             <div class="result-card" data-aos="fade-up" data-aos-delay="100">
-                <div class="bg-gray-50 p-6 rounded-2xl">
-                    <h4 class="text-xl font-bold text-secondary mb-4 flex items-center gap-2">
+                <div class="bg-gray-50 p-4 sm:p-6 rounded-2xl h-full flex flex-col">
+                    <h4 class="text-lg sm:text-xl font-bold text-secondary mb-3 sm:mb-4 flex items-center gap-2">
                         <i class="fa-solid fa-road text-primary"></i>
                         Veredas y Entradas
                     </h4>
-                    <div class="relative shadow-2xl rounded-xl overflow-hidden border-4 border-white">
+                    <div class="relative shadow-xl rounded-xl overflow-hidden border-2 sm:border-4 border-white flex-grow">
                         <div class="comparison-slider" id="slider-veredas">
-                            <img src="https://images.unsplash.com/photo-1541971875076-8f887e3879a9?ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80" alt="Vereda sucia antes del hidrolavado">
+                            <img src="https://images.unsplash.com/photo-1541971875076-8f887e3879a9?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" 
+                                 alt="Vereda sucia antes del hidrolavado"
+                                 class="w-full h-48 sm:h-56 object-cover"
+                                 loading="lazy">
                             <div class="comparison-item-after absolute inset-0">
-                                <img src="https://images.unsplash.com/photo-1541971875076-8f887e3879a9?ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80" style="filter: brightness(1.3) contrast(1.1)" alt="Vereda limpia después del hidrolavado">
+                                <img src="https://images.unsplash.com/photo-1541971875076-8f887e3879a9?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" 
+                                     style="filter: brightness(1.3) contrast(1.1)" 
+                                     alt="Vereda limpia después del hidrolavado"
+                                     class="w-full h-48 sm:h-56 object-cover"
+                                     loading="lazy">
                             </div>
                             <div class="handle">
                                 <div class="handle-circle">
-                                    <i class="fa-solid fa-arrows-left-right"></i>
+                                    <i class="fa-solid fa-arrows-left-right text-xs sm:text-sm"></i>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <p class="text-center text-sm text-gray-500 mt-3">Eliminación completa de moho y suciedad incrustada</p>
+                    <p class="text-center text-xs sm:text-sm text-gray-500 mt-3">Eliminación completa de moho y suciedad incrustada</p>
                 </div>
             </div>
 
             <!-- Resultado 2 - Fachadas -->
             <div class="result-card" data-aos="fade-up" data-aos-delay="200">
-                <div class="bg-gray-50 p-6 rounded-2xl">
-                    <h4 class="text-xl font-bold text-secondary mb-4 flex items-center gap-2">
+                <div class="bg-gray-50 p-4 sm:p-6 rounded-2xl h-full flex flex-col">
+                    <h4 class="text-lg sm:text-xl font-bold text-secondary mb-3 sm:mb-4 flex items-center gap-2">
                         <i class="fa-solid fa-building text-primary"></i>
                         Fachadas de Casas
                     </h4>
-                    <div class="relative shadow-2xl rounded-xl overflow-hidden border-4 border-white">
+                    <div class="relative shadow-xl rounded-xl overflow-hidden border-2 sm:border-4 border-white flex-grow">
                         <div class="comparison-slider" id="slider-fachadas">
-                            <img src="https://images.unsplash.com/photo-1568605114967-8130f3a36994?ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80" alt="Fachada sucia antes del hidrolavado">
+                            <img src="https://images.unsplash.com/photo-1568605114967-8130f3a36994?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" 
+                                 alt="Fachada sucia antes del hidrolavado"
+                                 class="w-full h-48 sm:h-56 object-cover"
+                                 loading="lazy">
                             <div class="comparison-item-after absolute inset-0">
-                                <img src="https://images.unsplash.com/photo-1568605114967-8130f3a36994?ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80" style="filter: brightness(1.2) saturate(1.1)" alt="Fachada limpia después del hidrolavado">
+                                <img src="https://images.unsplash.com/photo-1568605114967-8130f3a36994?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" 
+                                     style="filter: brightness(1.2) saturate(1.1)" 
+                                     alt="Fachada limpia después del hidrolavado"
+                                     class="w-full h-48 sm:h-56 object-cover"
+                                     loading="lazy">
                             </div>
                             <div class="handle">
                                 <div class="handle-circle">
-                                    <i class="fa-solid fa-arrows-left-right"></i>
+                                    <i class="fa-solid fa-arrows-left-right text-xs sm:text-sm"></i>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <p class="text-center text-sm text-gray-500 mt-3">Limpieza profunda de revoques y texturas</p>
+                    <p class="text-center text-xs sm:text-sm text-gray-500 mt-3">Limpieza profunda de revoques y texturas sin dañar</p>
                 </div>
             </div>
 
             <!-- Resultado 3 - Decks -->
             <div class="result-card" data-aos="fade-up" data-aos-delay="300">
-                <div class="bg-gray-50 p-6 rounded-2xl">
-                    <h4 class="text-xl font-bold text-secondary mb-4 flex items-center gap-2">
+                <div class="bg-gray-50 p-4 sm:p-6 rounded-2xl h-full flex flex-col">
+                    <h4 class="text-lg sm:text-xl font-bold text-secondary mb-3 sm:mb-4 flex items-center gap-2">
                         <i class="fa-solid fa-tree text-primary"></i>
                         Decks de Madera
                     </h4>
-                    <div class="relative shadow-2xl rounded-xl overflow-hidden border-4 border-white">
+                    <div class="relative shadow-xl rounded-xl overflow-hidden border-2 sm:border-4 border-white flex-grow">
                         <div class="comparison-slider" id="slider-decks">
-                            <img src="https://images.unsplash.com/photo-1586023492125-27b2c045efd7?ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80" alt="Deck sucio antes del hidrolavado">
+                            <img src="https://images.unsplash.com/photo-1586023492125-27b2c045efd7?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" 
+                                 alt="Deck sucio antes del hidrolavado"
+                                 class="w-full h-48 sm:h-56 object-cover"
+                                 loading="lazy">
                             <div class="comparison-item-after absolute inset-0">
-                                <img src="https://images.unsplash.com/photo-1586023492125-27b2c045efd7?ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80" style="filter: brightness(1.4) saturate(1.2)" alt="Deck limpio después del hidrolavado">
+                                <img src="https://images.unsplash.com/photo-1586023492125-27b2c045efd7?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" 
+                                     style="filter: brightness(1.4) saturate(1.2)" 
+                                     alt="Deck limpio después del hidrolavado"
+                                     class="w-full h-48 sm:h-56 object-cover"
+                                     loading="lazy">
                             </div>
                             <div class="handle">
                                 <div class="handle-circle">
-                                    <i class="fa-solid fa-arrows-left-right"></i>
+                                    <i class="fa-solid fa-arrows-left-right text-xs sm:text-sm"></i>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <p class="text-center text-sm text-gray-500 mt-3">Recuperación de madera sin dañar las fibras</p>
+                    <p class="text-center text-xs sm:text-sm text-gray-500 mt-3">Recuperación de madera sin dañar las fibras naturales</p>
                 </div>
             </div>
         </div>
-    </div>
-</section>
 
- 
-        <!-- Estadísticas -->
-        <div class="mt-16 grid md:grid-cols-4 gap-8 text-center" data-aos="fade-up">
-            <div>
-                <div class="text-3xl font-bold text-primary mb-2">500+</div>
-                <div class="text-gray-600">Clientes Satisfechos</div>
+        <!-- Estadísticas Mejoradas -->
+        <div class="mt-12 sm:mt-16 grid grid-cols-2 sm:grid-cols-4 gap-4 sm:gap-8 text-center" data-aos="fade-up">
+            <div class="p-4 bg-gray-50 rounded-xl">
+                <div class="text-2xl sm:text-3xl font-bold text-primary mb-1 sm:mb-2">---</div>
+                <div class="text-xs sm:text-sm text-gray-600">Clientes Satisfechos</div>
             </div>
-            <div>
-                <div class="text-3xl font-bold text-primary mb-2">95%</div>
-                <div class="text-gray-600">Trabajos Completados</div>
+            <div class="p-4 bg-gray-50 rounded-xl">
+                <div class="text-2xl sm:text-3xl font-bold text-primary mb-1 sm:mb-2">---</div>
+                <div class="text-xs sm:text-sm text-gray-600">Trabajos Completados</div>
             </div>
-            <div>
-                <div class="text-3xl font-bold text-primary mb-2">24h</div>
-                <div class="text-gray-600">Respuesta Rápida</div>
+            <div class="p-4 bg-gray-50 rounded-xl">
+                <div class="text-2xl sm:text-3xl font-bold text-primary mb-1 sm:mb-2">24h</div>
+                <div class="text-xs sm:text-sm text-gray-600">Respuesta Rápida</div>
             </div>
-            <div>
-                <div class="text-3xl font-bold text-primary mb-2">100%</div>
-                <div class="text-gray-600">Satisfacción Garantizada</div>
+            <div class="p-4 bg-gray-50 rounded-xl">
+                <div class="text-2xl sm:text-3xl font-bold text-primary mb-1 sm:mb-2">100%</div>
+                <div class="text-xs sm:text-sm text-gray-600">Satisfacción</div>
             </div>
         </div>
     </div>
 </section>
 
-<!-- Servicios -->
-<section id="servicios" class="py-20 bg-gray-50">
+<!-- Servicios Mejorados -->
+<section id="servicios" class="py-16 sm:py-20 bg-gradient-to-b from-gray-50 to-white">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center mb-16" data-aos="fade-up">
-            <h2 class="text-primary font-bold tracking-wide uppercase text-sm mb-2">Qué hacemos</h2>
-            <h3 class="text-3xl md:text-4xl font-bold text-secondary">Nuestros Servicios</h3>
+        <div class="text-center mb-12 sm:mb-16" data-aos="fade-up">
+            <h2 class="text-primary font-bold tracking-wide uppercase text-sm mb-2">Especialidades</h2>
+            <h3 class="text-2xl sm:text-3xl md:text-4xl font-bold text-secondary">Nuestros Servicios Especializados</h3>
+            <p class="text-gray-600 max-w-2xl mx-auto mt-3 text-sm sm:text-base">Ofrecemos soluciones específicas para cada tipo de superficie</p>
         </div>
 
-        <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 lg:gap-8">
             <!-- Card 1 -->
-            <div class="service-card bg-white p-6 rounded-2xl shadow-sm hover:shadow-xl transition duration-300 border border-gray-200 group" data-aos="fade-up" data-aos-delay="100">
-                <div class="w-14 h-14 bg-red-50 rounded-xl flex items-center justify-center text-primary text-2xl mb-6 group-hover:bg-primary group-hover:text-white transition service-icon-card-hover">
+            <div class="service-card bg-white p-4 sm:p-6 rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300 border border-gray-200 group" data-aos="fade-up" data-aos-delay="100">
+                <div class="w-12 h-12 bg-red-50 rounded-xl flex items-center justify-center text-primary text-xl mb-4 group-hover:bg-primary group-hover:text-white transition service-icon-card-hover">
                     <i class="fa-solid fa-road"></i>
                 </div>
-                <h4 class="text-xl font-bold text-secondary mb-3">Veredas y Patios</h4>
-                <p class="text-gray-600 text-sm">Removemos suciedad incrustada, chicles y manchas de aceite en entradas de vehículos y patios traseros.</p>
+                <h4 class="text-lg font-bold text-secondary mb-2">Veredas y Patios</h4>
+                <p class="text-gray-600 text-sm mb-4">Removemos suciedad incrustada, chicles y manchas de aceite.</p>
+                <ul class="space-y-1 text-xs text-gray-500">
+                    <li class="flex items-center gap-2">
+                        <i class="fa-solid fa-check text-primary text-xs"></i>
+                        <span>Entradas de vehículos</span>
+                    </li>
+                    <li class="flex items-center gap-2">
+                        <i class="fa-solid fa-check text-primary text-xs"></i>
+                        <span>Patios traseros</span>
+                    </li>
+                    <li class="flex items-center gap-2">
+                        <i class="fa-solid fa-check text-primary text-xs"></i>
+                        <span>Senderos de jardín</span>
+                    </li>
+                </ul>
             </div>
 
             <!-- Card 2 -->
-            <div class="service-card bg-white p-6 rounded-2xl shadow-sm hover:shadow-xl transition duration-300 border border-gray-200 group" data-aos="fade-up" data-aos-delay="200">
-                <div class="w-14 h-14 bg-red-50 rounded-xl flex items-center justify-center text-primary text-2xl mb-6 group-hover:bg-primary group-hover:text-white transition service-icon-card-hover">
+            <div class="service-card bg-white p-4 sm:p-6 rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300 border border-gray-200 group" data-aos="fade-up" data-aos-delay="200">
+                <div class="w-12 h-12 bg-red-50 rounded-xl flex items-center justify-center text-primary text-xl mb-4 group-hover:bg-primary group-hover:text-white transition service-icon-card-hover">
                     <i class="fa-solid fa-building"></i>
                 </div>
-                <h4 class="text-xl font-bold text-secondary mb-3">Fachadas y Paredes</h4>
-                <p class="text-gray-600 text-sm">Limpieza vertical para frentes de casas, revestimientos texturados (Tarquini) y muros perimetrales.</p>
+                <h4 class="text-lg font-bold text-secondary mb-2">Fachadas y Paredes</h4>
+                <p class="text-gray-600 text-sm mb-4">Limpieza vertical para frentes de casas y muros perimetrales.</p>
+                <ul class="space-y-1 text-xs text-gray-500">
+                    <li class="flex items-center gap-2">
+                        <i class="fa-solid fa-check text-primary text-xs"></i>
+                        <span>Revestimientos texturados</span>
+                    </li>
+                    <li class="flex items-center gap-2">
+                        <i class="fa-solid fa-check text-primary text-xs"></i>
+                        <span>Muros de cerramiento</span>
+                    </li>
+                    <li class="flex items-center gap-2">
+                        <i class="fa-solid fa-check text-primary text-xs"></i>
+                        <span>Frentes de ladrillo</span>
+                    </li>
+                </ul>
             </div>
 
             <!-- Card 3 -->
-            <div class="service-card bg-white p-6 rounded-2xl shadow-sm hover:shadow-xl transition duration-300 border border-gray-200 group" data-aos="fade-up" data-aos-delay="300">
-                <div class="w-14 h-14 bg-red-50 rounded-xl flex items-center justify-center text-primary text-2xl mb-6 group-hover:bg-primary group-hover:text-white transition service-icon-card-hover">
+            <div class="service-card bg-white p-4 sm:p-6 rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300 border border-gray-200 group" data-aos="fade-up" data-aos-delay="300">
+                <div class="w-12 h-12 bg-red-50 rounded-xl flex items-center justify-center text-primary text-xl mb-4 group-hover:bg-primary group-hover:text-white transition service-icon-card-hover">
                     <i class="fa-solid fa-layer-group"></i>
                 </div>
-                <h4 class="text-xl font-bold text-secondary mb-3">Decks y Pérgolas</h4>
-                <p class="text-gray-600 text-sm">Tratamiento suave pero efectivo para maderas y estructuras delicadas, preparándolas para pintar o barnizar.</p>
+                <h4 class="text-lg font-bold text-secondary mb-2">Decks y Pérgolas</h4>
+                <p class="text-gray-600 text-sm mb-4">Tratamiento suave para maderas preparándolas para pintar o barnizar.</p>
+                <ul class="space-y-1 text-xs text-gray-500">
+                    <li class="flex items-center gap-2">
+                        <i class="fa-solid fa-check text-primary text-xs"></i>
+                        <span>Decks de madera</span>
+                    </li>
+                    <li class="flex items-center gap-2">
+                        <i class="fa-solid fa-check text-primary text-xs"></i>
+                        <span>Pérgolas y cenadores</span>
+                    </li>
+                    <li class="flex items-center gap-2">
+                        <i class="fa-solid fa-check text-primary text-xs"></i>
+                        <span>Estructuras exteriores</span>
+                    </li>
+                </ul>
             </div>
 
             <!-- Card 4 -->
-            <div class="service-card bg-white p-6 rounded-2xl shadow-sm hover:shadow-xl transition duration-300 border border-gray-200 group" data-aos="fade-up" data-aos-delay="400">
-                <div class="w-14 h-14 bg-red-50 rounded-xl flex items-center justify-center text-primary text-2xl mb-6 group-hover:bg-primary group-hover:text-white transition service-icon-card-hover">
+            <div class="service-card bg-white p-4 sm:p-6 rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300 border border-gray-200 group" data-aos="fade-up" data-aos-delay="400">
+                <div class="w-12 h-12 bg-red-50 rounded-xl flex items-center justify-center text-primary text-xl mb-4 group-hover:bg-primary group-hover:text-white transition service-icon-card-hover">
                     <i class="fa-solid fa-swimming-pool"></i>
                 </div>
-                <h4 class="text-xl font-bold text-secondary mb-3">Bordes de Piscina</h4>
-                <p class="text-gray-600 text-sm">Eliminación de hongos en los bordes atérmicos y solariums para evitar resbalones y mejorar la estética.</p>
+                <h4 class="text-lg font-bold text-secondary mb-2">Áreas de Piscina</h4>
+                <p class="text-gray-600 text-sm mb-4">Eliminación de hongos en bordes atérmicos y solariums.</p>
+                <ul class="space-y-1 text-xs text-gray-500">
+                    <li class="flex items-center gap-2">
+                        <i class="fa-solid fa-check text-primary text-xs"></i>
+                        <span>Bordes atérmicos</span>
+                    </li>
+                    <li class="flex items-center gap-2">
+                        <i class="fa-solid fa-check text-primary text-xs"></i>
+                        <span>Solariums y decks</span>
+                    </li>
+                    <li class="flex items-center gap-2">
+                        <i class="fa-solid fa-check text-primary text-xs"></i>
+                        <span>Veredas perimetrales</span>
+                    </li>
+                </ul>
             </div>
         </div>
 
         <!-- Botón ver más servicios -->
-        <div class="text-center mt-12" data-aos="fade-up">
-            <a href="#contacto" class="bg-primary hover:bg-primary-dark text-white px-8 py-3 rounded-full font-semibold transition inline-flex items-center gap-2">
+        <div class="text-center mt-8 sm:mt-12" data-aos="fade-up">
+            <a href="#contacto" class="bg-primary hover:bg-primary-dark text-white px-6 sm:px-8 py-3 sm:py-3.5 rounded-full font-semibold transition-all inline-flex items-center gap-2 shadow-lg shadow-red-900/20 hover:shadow-xl active:scale-95 touch-manipulation">
                 <i class="fa-solid fa-calendar-check"></i>
                 Solicitar Todos los Servicios
             </a>
@@ -337,113 +458,154 @@
     </div>
 </section>
 
-<!-- Cómo Trabajamos (Proceso) -->
-<section class="py-20 bg-secondary text-white">
+<!-- Cómo Trabajamos (Proceso) Mejorado -->
+<section id="proceso" class="py-16 sm:py-20 bg-secondary text-white">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center mb-16" data-aos="fade-up">
-            <h2 class="text-primary font-bold tracking-wide uppercase text-sm mb-2">Nuestro Proceso</h2>
-            <h3 class="text-3xl md:text-4xl font-bold">Simple y Transparente</h3>
+        <div class="text-center mb-12 sm:mb-16" data-aos="fade-up">
+            <h2 class="text-primary font-bold tracking-wide uppercase text-sm mb-2">Método de Trabajo</h2>
+            <h3 class="text-2xl sm:text-3xl md:text-4xl font-bold">Proceso Simple y Efectivo</h3>
+            <p class="mt-3 sm:mt-4 text-gray-300 max-w-2xl mx-auto text-sm sm:text-base">Solo 4 pasos para recuperar la belleza de tus espacios exteriores</p>
         </div>
 
-        <div class="grid md:grid-cols-4 gap-8 text-center relative">
-            <!-- Línea conectora (Desktop) -->
-            <div class="hidden md:block absolute top-8 left-0 w-full h-1 bg-white/10 -z-0"></div>
-
+        <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8 relative">
             <!-- Paso 1 -->
             <div class="process-step relative z-10" data-aos="zoom-in" data-aos-delay="100">
-                <div class="process-number w-16 h-16 bg-primary mx-auto rounded-full flex items-center justify-center text-2xl font-bold mb-4">1</div>
-                <h4 class="text-xl font-semibold mb-2">Contacto</h4>
-                <p class="text-gray-400 text-sm">Nos escribís por WhatsApp con fotos o descripción del lugar.</p>
+                <div class="process-number w-14 h-14 sm:w-16 sm:h-16 bg-primary mx-auto rounded-full flex items-center justify-center text-xl sm:text-2xl font-bold mb-3 sm:mb-4 border-4 border-secondary">1</div>
+                <h4 class="text-lg sm:text-xl font-semibold mb-2">Contacto</h4>
+                <p class="text-gray-400 text-xs sm:text-sm">Envianos fotos o descripción por WhatsApp y te respondemos al instante.</p>
             </div>
+            
             <!-- Paso 2 -->
             <div class="process-step relative z-10" data-aos="zoom-in" data-aos-delay="200">
-                <div class="process-number w-16 h-16 bg-primary mx-auto rounded-full flex items-center justify-center text-2xl font-bold mb-4">2</div>
-                <h4 class="text-xl font-semibold mb-2">Presupuesto</h4>
-                <p class="text-gray-400 text-sm">Te enviamos una cotización detallada sin compromiso.</p>
+                <div class="process-number w-14 h-14 sm:w-16 sm:h-16 bg-primary mx-auto rounded-full flex items-center justify-center text-xl sm:text-2xl font-bold mb-3 sm:mb-4 border-4 border-secondary">2</div>
+                <h4 class="text-lg sm:text-xl font-semibold mb-2">Presupuesto</h4>
+                <p class="text-gray-400 text-xs sm:text-sm">Te enviamos una cotización detallada y sin compromiso en menos de 24h.</p>
             </div>
+            
             <!-- Paso 3 -->
             <div class="process-step relative z-10" data-aos="zoom-in" data-aos-delay="300">
-                <div class="process-number w-16 h-16 bg-primary mx-auto rounded-full flex items-center justify-center text-2xl font-bold mb-4">3</div>
-                <h4 class="text-xl font-semibold mb-2">Limpieza</h4>
-                <p class="text-gray-400 text-sm">Vamos el día acordado con nuestra maquinaria y dejamos todo impecable.</p>
+                <div class="process-number w-14 h-14 sm:w-16 sm:h-16 bg-primary mx-auto rounded-full flex items-center justify-center text-xl sm:text-2xl font-bold mb-3 sm:mb-4 border-4 border-secondary">3</div>
+                <h4 class="text-lg sm:text-xl font-semibold mb-2">Limpieza</h4>
+                <p class="text-gray-400 text-xs sm:text-sm">Vamos el día acordado con equipos profesionales y dejamos todo impecable.</p>
             </div>
+            
             <!-- Paso 4 -->
             <div class="process-step relative z-10" data-aos="zoom-in" data-aos-delay="400">
-                <div class="process-number w-16 h-16 bg-primary mx-auto rounded-full flex items-center justify-center text-2xl font-bold mb-4">4</div>
-                <h4 class="text-xl font-semibold mb-2">Disfrutá</h4>
-                <p class="text-gray-400 text-sm">Revisamos el trabajo juntos y volvés a disfrutar tu espacio.</p>
+                <div class="process-number w-14 h-14 sm:w-16 sm:h-16 bg-primary mx-auto rounded-full flex items-center justify-center text-xl sm:text-2xl font-bold mb-3 sm:mb-4 border-4 border-secondary">4</div>
+                <h4 class="text-lg sm:text-xl font-semibold mb-2">Resultado</h4>
+                <p class="text-gray-400 text-xs sm:text-sm">Revisamos el trabajo juntos y volvés a disfrutar tu espacio renovado.</p>
             </div>
         </div>
+
+        <!-- Timeline connector -->
+        <div class="hidden lg:block absolute left-1/2 transform -translate-x-1/2 w-3/4 h-1 bg-white/10 top-1/4 -translate-y-1/2 -z-0"></div>
     </div>
 </section>
 
-<!-- Zonas y FAQ Grid -->
-<section id="zonas" class="py-20 bg-white">
+<!-- Zonas y FAQ Grid Mejorado -->
+<section id="zonas" class="py-16 sm:py-20 bg-white">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="grid lg:grid-cols-2 gap-16">
+        <div class="grid lg:grid-cols-2 gap-8 sm:gap-16">
             <!-- Columna Zonas -->
             <div data-aos="fade-right">
-                <h3 class="text-2xl font-bold text-secondary mb-6 flex items-center gap-3">
-                    <i class="fa-solid fa-map-location-dot text-primary"></i> Zona de Cobertura
-                </h3>
-                <p class="text-gray-600 mb-6">Estamos ubicados estratégicamente para brindar servicio rápido en todo Zona Norte y alrededores.</p>
+                <div class="flex items-center gap-3 mb-4 sm:mb-6">
+                    <div class="w-10 h-10 bg-primary/10 rounded-lg flex items-center justify-center">
+                        <i class="fa-solid fa-map-location-dot text-primary text-lg"></i>
+                    </div>
+                    <h3 class="text-xl sm:text-2xl font-bold text-secondary">Zona de Cobertura</h3>
+                </div>
+                <p class="text-gray-600 mb-6 text-sm sm:text-base">Estamos ubicados estratégicamente para brindar servicio rápido en todo Zona Norte y alrededores.</p>
                 
-                <ul class="space-y-3">
-                    <li class="coverage-item flex items-center gap-3 text-gray-700 p-3 rounded-lg">
-                        <i class="fa-solid fa-check text-green-500"></i> Nordelta y Villanueva
-                    </li>
-                    <li class="coverage-item flex items-center gap-3 text-gray-700 p-3 rounded-lg">
-                        <i class="fa-solid fa-check text-green-500"></i> Tigre y Rincón de Milberg
-                    </li>
-                    <li class="coverage-item flex items-center gap-3 text-gray-700 p-3 rounded-lg">
-                        <i class="fa-solid fa-check text-green-500"></i> San Isidro y Martínez
-                    </li>
-                    <li class="coverage-item flex items-center gap-3 text-gray-700 p-3 rounded-lg">
-                        <i class="fa-solid fa-check text-green-500"></i> Vicente López y Olivos
-                    </li>
-                    <li class="coverage-item flex items-center gap-3 text-gray-700 p-3 rounded-lg">
-                        <i class="fa-solid fa-check text-green-500"></i> Pilar y Escobar (Consultar)
-                    </li>
-                </ul>
+                <div class="grid sm:grid-cols-2 gap-3">
+                    <div class="coverage-item flex items-center gap-3 text-gray-700 p-3 sm:p-4 rounded-lg bg-gray-50 border border-gray-200 hover:border-primary/50 transition">
+                        <i class="fa-solid fa-check text-green-500"></i>
+                        <div>
+                            <div class="font-medium">Nordelta</div>
+                            <div class="text-xs text-gray-500">y Villanueva</div>
+                        </div>
+                    </div>
+                    <div class="coverage-item flex items-center gap-3 text-gray-700 p-3 sm:p-4 rounded-lg bg-gray-50 border border-gray-200 hover:border-primary/50 transition">
+                        <i class="fa-solid fa-check text-green-500"></i>
+                        <div>
+                            <div class="font-medium">Tigre</div>
+                            <div class="text-xs text-gray-500">y Rincón de Milberg</div>
+                        </div>
+                    </div>
+                    <div class="coverage-item flex items-center gap-3 text-gray-700 p-3 sm:p-4 rounded-lg bg-gray-50 border border-gray-200 hover:border-primary/50 transition">
+                        <i class="fa-solid fa-check text-green-500"></i>
+                        <div>
+                            <div class="font-medium">San Isidro</div>
+                            <div class="text-xs text-gray-500">y Martínez</div>
+                        </div>
+                    </div>
+                    <div class="coverage-item flex items-center gap-3 text-gray-700 p-3 sm:p-4 rounded-lg bg-gray-50 border border-gray-200 hover:border-primary/50 transition">
+                        <i class="fa-solid fa-check text-green-500"></i>
+                        <div>
+                            <div class="font-medium">Vicente López</div>
+                            <div class="text-xs text-gray-500">y Olivos</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="mt-6 p-4 bg-primary/5 rounded-xl border border-primary/20">
+                    <p class="text-sm text-gray-600">
+                        <i class="fa-solid fa-info-circle text-primary mr-2"></i>
+                        <span class="font-medium">¿No ves tu zona?</span> Consultanos por WhatsApp para confirmar cobertura en otras áreas.
+                    </p>
+                </div>
             </div>
 
             <!-- Columna FAQ (Accordion simple) -->
             <div id="faq" data-aos="fade-left">
-                <h3 class="text-2xl font-bold text-secondary mb-6 flex items-center gap-3">
-                    <i class="fa-solid fa-circle-question text-primary"></i> Preguntas Frecuentes
-                </h3>
+                <div class="flex items-center gap-3 mb-4 sm:mb-6">
+                    <div class="w-10 h-10 bg-primary/10 rounded-lg flex items-center justify-center">
+                        <i class="fa-solid fa-circle-question text-primary text-lg"></i>
+                    </div>
+                    <h3 class="text-xl sm:text-2xl font-bold text-secondary">Preguntas Frecuentes</h3>
+                </div>
                 
-                <div class="space-y-4">
+                <div class="space-y-3">
                     <!-- Pregunta 1 -->
                     <div class="faq-item border border-gray-200 rounded-lg overflow-hidden">
-                        <button class="faq-button w-full px-6 py-4 text-left font-semibold text-secondary bg-gray-50 hover:bg-gray-100 flex justify-between items-center">
-                            ¿Necesito poner el agua y la electricidad?
-                            <i class="fa-solid fa-chevron-down text-gray-400 transition-transform"></i>
+                        <button class="faq-button w-full px-4 sm:px-6 py-3 sm:py-4 text-left font-semibold text-secondary bg-gray-50 hover:bg-gray-100 flex justify-between items-center transition-all active:scale-[0.99] touch-manipulation">
+                            <span class="text-sm sm:text-base">¿Necesito poner el agua y la electricidad?</span>
+                            <i class="fa-solid fa-chevron-down text-gray-400 transition-transform text-sm"></i>
                         </button>
-                        <div class="faq-content hidden px-6 py-4 text-gray-600 text-sm">
-                            Sí, necesitamos acceso a una canilla de agua y un enchufe común. Nuestras máquinas son eficientes y no consumen excesiva energía.
+                        <div class="faq-content hidden px-4 sm:px-6 py-3 sm:py-4 text-gray-600 text-xs sm:text-sm bg-white">
+                            Sí, necesitamos acceso a una canilla de agua y un enchufe común (220V). Nuestras máquinas son eficientes y no consumen excesiva energía. Si no tenés tomas cercanas, podemos coordinar una solución.
                         </div>
                     </div>
 
                     <!-- Pregunta 2 -->
                     <div class="faq-item border border-gray-200 rounded-lg overflow-hidden">
-                        <button class="faq-button w-full px-6 py-4 text-left font-semibold text-secondary bg-gray-50 hover:bg-gray-100 flex justify-between items-center">
-                            ¿Se dañan las superficies con la presión?
-                            <i class="fa-solid fa-chevron-down text-gray-400 transition-transform"></i>
+                        <button class="faq-button w-full px-4 sm:px-6 py-3 sm:py-4 text-left font-semibold text-secondary bg-gray-50 hover:bg-gray-100 flex justify-between items-center transition-all active:scale-[0.99] touch-manipulation">
+                            <span class="text-sm sm:text-base">¿Se dañan las superficies con la presión?</span>
+                            <i class="fa-solid fa-chevron-down text-gray-400 transition-transform text-sm"></i>
                         </button>
-                        <div class="faq-content hidden px-6 py-4 text-gray-600 text-sm">
-                            No. Contamos con equipos regulables y boquillas específicas para cada material (madera, piedra, tarquini). Cuidamos tu casa como si fuera nuestra.
+                        <div class="faq-content hidden px-4 sm:px-6 py-3 sm:py-4 text-gray-600 text-xs sm:text-sm bg-white">
+                            No. Contamos con equipos regulables y boquillas específicas para cada material (madera, piedra, tarquini, cerámica). Realizamos una prueba previa para ajustar la presión adecuada. Cuidamos tu casa como si fuera nuestra.
                         </div>
                     </div>
 
                     <!-- Pregunta 3 -->
                     <div class="faq-item border border-gray-200 rounded-lg overflow-hidden">
-                        <button class="faq-button w-full px-6 py-4 text-left font-semibold text-secondary bg-gray-50 hover:bg-gray-100 flex justify-between items-center">
-                            ¿Cómo puedo pedir un presupuesto?
-                            <i class="fa-solid fa-chevron-down text-gray-400 transition-transform"></i>
+                        <button class="faq-button w-full px-4 sm:px-6 py-3 sm:py-4 text-left font-semibold text-secondary bg-gray-50 hover:bg-gray-100 flex justify-between items-center transition-all active:scale-[0.99] touch-manipulation">
+                            <span class="text-sm sm:text-base">¿Cómo puedo pedir un presupuesto?</span>
+                            <i class="fa-solid fa-chevron-down text-gray-400 transition-transform text-sm"></i>
                         </button>
-                        <div class="faq-content hidden px-6 py-4 text-gray-600 text-sm">
-                            Lo más rápido es enviarnos fotos por WhatsApp al 11-6097-1596. Así podemos estimar el trabajo y pasarte un precio en el momento.
+                        <div class="faq-content hidden px-4 sm:px-6 py-3 sm:py-4 text-gray-600 text-xs sm:text-sm bg-white">
+                            Lo más rápido es enviarnos fotos por WhatsApp al {{ company_info.company_phone }}. Así podemos estimar el trabajo y pasarte un precio en el momento. También podés completar el formulario de contacto y te llamamos.
+                        </div>
+                    </div>
+
+                    <!-- Pregunta 4 -->
+                    <div class="faq-item border border-gray-200 rounded-lg overflow-hidden">
+                        <button class="faq-button w-full px-4 sm:px-6 py-3 sm:py-4 text-left font-semibold text-secondary bg-gray-50 hover:bg-gray-100 flex justify-between items-center transition-all active:scale-[0.99] touch-manipulation">
+                            <span class="text-sm sm:text-base">¿Qué zonas cubren?</span>
+                            <i class="fa-solid fa-chevron-down text-gray-400 transition-transform text-sm"></i>
+                        </button>
+                        <div class="faq-content hidden px-4 sm:px-6 py-3 sm:py-4 text-gray-600 text-xs sm:text-sm bg-white">
+                            Cubrimos toda Zona Norte: Nordelta, Tigre, San Isidro, Vicente López, Pilar y Escobar. También hacemos trabajos en capital y otras zonas del GBA. Consultanos por WhatsApp para confirmar disponibilidad en tu área específica.
                         </div>
                     </div>
                 </div>
@@ -452,44 +614,44 @@
     </div>
 </section>
 
-<!-- Sección de Contacto Mejorada -->
-<section id="contacto" class="py-20 bg-gray-100">
+<!-- Sección de Contacto Ultra Mobile-Optimized -->
+<section id="contacto" class="py-16 sm:py-20 bg-gradient-to-b from-gray-50 to-white">
     <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center mb-12" data-aos="fade-up">
-            <h2 class="text-primary font-bold tracking-wide uppercase text-sm mb-2">Presupuesto Sin Cargo</h2>
-            <h3 class="text-3xl md:text-4xl font-bold text-secondary mb-4">Solicitá Tu Presupuesto</h3>
-            <p class="text-gray-600 max-w-2xl mx-auto">Completá el formulario y te contactaremos para coordinar una visita sin compromiso</p>
+        <div class="text-center mb-8 sm:mb-12" data-aos="fade-up">
+            <h2 class="text-primary font-bold tracking-wide uppercase text-sm mb-2">Contacto Rápido</h2>
+            <h3 class="text-2xl sm:text-3xl md:text-4xl font-bold text-secondary mb-3 sm:mb-4">Solicitá Tu Presupuesto</h3>
+            <p class="text-gray-600 max-w-2xl mx-auto text-sm sm:text-base">Completá el formulario y te contactaremos para coordinar una visita sin compromiso</p>
         </div>
 
-        <div class="bg-white rounded-2xl shadow-xl p-8" data-aos="fade-up">
-            <form id="contact-form" class="space-y-8">
+        <div class="bg-white rounded-2xl shadow-xl p-4 sm:p-6 md:p-8" data-aos="fade-up">
+            <form id="contact-form" class="space-y-6 sm:space-y-8">
                 <!-- Información Personal -->
                 <div class="form-section">
-                    <h4 class="section-title">Tus Datos</h4>
-                    <div class="grid md:grid-cols-2 gap-6">
+                    <h4 class="section-title text-lg sm:text-xl">Tus Datos</h4>
+                    <div class="grid sm:grid-cols-2 gap-4 sm:gap-6">
                         <div>
                             <label class="block text-sm font-medium text-gray-700 mb-2">Nombre completo *</label>
-                            <input type="text" name="name" class="form-input w-full" placeholder="Tu nombre" required>
+                            <input type="text" name="name" class="form-input w-full text-sm sm:text-base" placeholder="Tu nombre" required>
                         </div>
                         <div>
                             <label class="block text-sm font-medium text-gray-700 mb-2">Teléfono *</label>
-                            <input type="tel" name="phone" class="form-input w-full" placeholder="11 2345-6789" required>
+                            <input type="tel" name="phone" class="form-input w-full text-sm sm:text-base" placeholder="11 2345-6789" required>
                         </div>
                     </div>
                     
-                    <div class="grid md:grid-cols-2 gap-6 mt-4">
+                    <div class="grid sm:grid-cols-2 gap-4 sm:gap-6 mt-4">
                         <div>
                             <label class="block text-sm font-medium text-gray-700 mb-2">Email</label>
-                            <input type="email" name="email" class="form-input w-full" placeholder="tu@email.com">
+                            <input type="email" name="email" class="form-input w-full text-sm sm:text-base" placeholder="tu@email.com">
                         </div>
                         <div>
                             <label class="block text-sm font-medium text-gray-700 mb-2">Zona *</label>
-                            <select name="zone" class="form-input w-full form-select" required>
+                            <select name="zone" class="form-input w-full form-select text-sm sm:text-base" required>
                                 <option value="">Seleccioná tu zona</option>
-                                <option value="nordelta">Nordelta</option>
-                                <option value="tigre">Tigre</option>
-                                <option value="san-isidro">San Isidro</option>
-                                <option value="vicente-lopez">Vicente López</option>
+                                <option value="nordelta">Nordelta y Villanueva</option>
+                                <option value="tigre">Tigre y Rincón</option>
+                                <option value="san-isidro">San Isidro y Martínez</option>
+                                <option value="vicente-lopez">Vicente López y Olivos</option>
                                 <option value="pilar">Pilar</option>
                                 <option value="escobar">Escobar</option>
                                 <option value="otra">Otra zona</option>
@@ -500,18 +662,18 @@
 
                 <!-- Servicios Requeridos -->
                 <div class="form-section">
-                    <h4 class="section-title">Servicios que Necesitás *</h4>
-                    <div class="grid md:grid-cols-2 gap-4">
+                    <h4 class="section-title text-lg sm:text-xl">Servicios que Necesitás *</h4>
+                    <div class="grid sm:grid-cols-2 gap-3 sm:gap-4">
                         <!-- Veredas y Patios -->
                         <div class="service-option">
                             <input type="checkbox" name="services" value="veredas" class="service-checkbox" required>
                             <div class="service-content">
                                 <div class="custom-checkbox"></div>
                                 <div class="service-info">
-                                    <div class="service-title">Veredas y Patios</div>
-                                    <div class="service-description">Limpieza de entradas y patios traseros</div>
+                                    <div class="service-title text-sm sm:text-base">Veredas y Patios</div>
+                                    <div class="service-description text-xs sm:text-sm">Limpieza de entradas y patios</div>
                                 </div>
-                                <i class="fa-solid fa-road service-icon"></i>
+                                <i class="fa-solid fa-road service-icon text-base sm:text-lg"></i>
                             </div>
                         </div>
 
@@ -521,10 +683,10 @@
                             <div class="service-content">
                                 <div class="custom-checkbox"></div>
                                 <div class="service-info">
-                                    <div class="service-title">Fachadas y Paredes</div>
-                                    <div class="service-description">Limpieza vertical de frentes y muros</div>
+                                    <div class="service-title text-sm sm:text-base">Fachadas y Paredes</div>
+                                    <div class="service-description text-xs sm:text-sm">Limpieza vertical de frentes</div>
                                 </div>
-                                <i class="fa-solid fa-building service-icon"></i>
+                                <i class="fa-solid fa-building service-icon text-base sm:text-lg"></i>
                             </div>
                         </div>
 
@@ -534,10 +696,10 @@
                             <div class="service-content">
                                 <div class="custom-checkbox"></div>
                                 <div class="service-info">
-                                    <div class="service-title">Decks y Pérgolas</div>
-                                    <div class="service-description">Tratamiento para maderas exteriores</div>
+                                    <div class="service-title text-sm sm:text-base">Decks y Pérgolas</div>
+                                    <div class="service-description text-xs sm:text-sm">Tratamiento para maderas</div>
                                 </div>
-                                <i class="fa-solid fa-tree service-icon"></i>
+                                <i class="fa-solid fa-tree service-icon text-base sm:text-lg"></i>
                             </div>
                         </div>
 
@@ -547,36 +709,10 @@
                             <div class="service-content">
                                 <div class="custom-checkbox"></div>
                                 <div class="service-info">
-                                    <div class="service-title">Bordes de Piscina</div>
-                                    <div class="service-description">Eliminación de hongos y verdín</div>
+                                    <div class="service-title text-sm sm:text-base">Bordes de Piscina</div>
+                                    <div class="service-description text-xs sm:text-sm">Eliminación de hongos</div>
                                 </div>
-                                <i class="fa-solid fa-swimming-pool service-icon"></i>
-                            </div>
-                        </div>
-
-                        <!-- Techos y Tejas -->
-                        <div class="service-option">
-                            <input type="checkbox" name="services" value="techos" class="service-checkbox">
-                            <div class="service-content">
-                                <div class="custom-checkbox"></div>
-                                <div class="service-info">
-                                    <div class="service-title">Techos y Tejas</div>
-                                    <div class="service-description">Limpieza de musgo y suciedad</div>
-                                </div>
-                                <i class="fa-solid fa-house-chimney service-icon"></i>
-                            </div>
-                        </div>
-
-                        <!-- Muebles de Exterior -->
-                        <div class="service-option">
-                            <input type="checkbox" name="services" value="muebles" class="service-checkbox">
-                            <div class="service-content">
-                                <div class="custom-checkbox"></div>
-                                <div class="service-info">
-                                    <div class="service-title">Muebles de Jardín</div>
-                                    <div class="service-description">Limpieza suave para materiales delicados</div>
-                                </div>
-                                <i class="fa-solid fa-chair service-icon"></i>
+                                <i class="fa-solid fa-swimming-pool service-icon text-base sm:text-lg"></i>
                             </div>
                         </div>
                     </div>
@@ -584,15 +720,15 @@
 
                 <!-- Detalles Adicionales -->
                 <div class="form-section">
-                    <h4 class="section-title">Información Adicional</h4>
-                    <div class="grid md:grid-cols-2 gap-6">
+                    <h4 class="section-title text-lg sm:text-xl">Información Adicional</h4>
+                    <div class="grid sm:grid-cols-2 gap-4 sm:gap-6">
                         <div>
                             <label class="block text-sm font-medium text-gray-700 mb-2">Superficie aproximada</label>
-                            <input type="number" name="surface" class="form-input w-full" placeholder="Ej: 50 m²" min="0">
+                            <input type="number" name="surface" class="form-input w-full text-sm sm:text-base" placeholder="Ej: 50 m²" min="0">
                         </div>
                         <div>
-                            <label class="block text-sm font-medium text-gray-700 mb-2">¿Cuándo te gustaría el servicio?</label>
-                            <select name="schedule" class="form-input w-full form-select">
+                            <label class="block text-sm font-medium text-gray-700 mb-2">¿Cuándo te gustaría?</label>
+                            <select name="schedule" class="form-input w-full form-select text-sm sm:text-base">
                                 <option value="">Sin preferencia</option>
                                 <option value="urgente">Lo antes posible</option>
                                 <option value="semana">Esta semana</option>
@@ -604,37 +740,60 @@
                     
                     <div class="mt-4">
                         <label class="block text-sm font-medium text-gray-700 mb-2">Descripción del trabajo</label>
-                        <textarea name="description" rows="4" class="form-input w-full" placeholder="Contanos más detalles sobre lo que necesitás limpiar..."></textarea>
+                        <textarea name="description" rows="3" class="form-input w-full text-sm sm:text-base" placeholder="Contanos más detalles sobre lo que necesitás limpiar..."></textarea>
                     </div>
                 </div>
 
                 <!-- Botón de envío -->
-                <div class="text-center pt-4">
-                    <button type="submit" class="bg-primary hover:bg-primary-dark text-white font-bold py-4 px-8 rounded-lg transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105">
+                <div class="text-center pt-2 sm:pt-4">
+                    <button type="submit" class="bg-primary hover:bg-primary-dark text-white font-bold py-3 sm:py-4 px-6 sm:px-8 rounded-lg transition-all duration-300 shadow-lg shadow-red-900/20 hover:shadow-xl active:scale-95 touch-manipulation text-sm sm:text-base">
                         <i class="fa-solid fa-paper-plane mr-2"></i>
-                        Solicitar Presupuesto Sin Cargo
+                        Solicitar Presupuesto Gratis
                     </button>
-                    <p class="text-sm text-gray-500 mt-3">Te contactaremos para coordinar una visita y darte el precio exacto</p>
+                    <p class="text-xs sm:text-sm text-gray-500 mt-2 sm:mt-3">Te contactaremos en menos de 24 horas para coordinar una visita</p>
                 </div>
             </form>
         </div>
 
         <!-- Información de Contacto Alternativa -->
-        <div class="text-center mt-12" data-aos="fade-up">
-            <p class="text-gray-600 mb-6">¿Preferís contactarnos directamente?</p>
-            <div class="flex flex-col sm:flex-row gap-4 justify-center">
-                <a href="https://wa.me/5491160971596?text=Hola,%20me%20gustaría%20pedir%20un%20presupuesto%20para..." 
+        <div class="text-center mt-8 sm:mt-12" data-aos="fade-up">
+            <p class="text-gray-600 mb-4 sm:mb-6 text-sm sm:text-base">¿Preferís contactarnos directamente?</p>
+            <div class="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center max-w-md mx-auto">
+                <a href="https://wa.me/{{ company_info.company_whatsapp }}" 
                    target="_blank" 
-                   class="whatsapp-button bg-green-500 hover:bg-green-600 text-white px-6 py-3 rounded-lg font-semibold transition-all flex items-center justify-center gap-2">
-                    <i class="fa-brands fa-whatsapp text-xl"></i>
+                   rel="noopener noreferrer"
+                   class="whatsapp-button bg-whatsapp hover:bg-green-600 text-white px-4 sm:px-6 py-3 sm:py-3.5 rounded-lg font-semibold transition-all flex items-center justify-center gap-2 shadow-lg shadow-green-900/20 hover:shadow-xl active:scale-95 touch-manipulation text-sm sm:text-base">
+                    <i class="fa-brands fa-whatsapp text-lg sm:text-xl"></i>
                     WhatsApp Rápido
                 </a>
-                <a href="tel:1160971596" 
-                   class="bg-gray-700 hover:bg-gray-800 text-white px-6 py-3 rounded-lg font-semibold transition-all flex items-center justify-center gap-2">
-                    <i class="fa-solid fa-phone text-xl"></i>
+                <a href="tel:{{ company_info.company_phone|cut:'-' }}" 
+                   class="bg-gray-700 hover:bg-gray-800 text-white px-4 sm:px-6 py-3 sm:py-3.5 rounded-lg font-semibold transition-all flex items-center justify-center gap-2 shadow-lg shadow-gray-900/20 hover:shadow-xl active:scale-95 touch-manipulation text-sm sm:text-base">
+                    <i class="fa-solid fa-phone text-lg sm:text-xl"></i>
                     Llamar Ahora
                 </a>
             </div>
+        </div>
+    </div>
+</section>
+
+<!-- CTA Final -->
+<section class="py-12 sm:py-16 bg-gradient-to-r from-primary to-primary-dark text-white">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <h3 class="text-xl sm:text-2xl md:text-3xl font-bold mb-3 sm:mb-4">¿Listo para recuperar el brillo de tu propiedad?</h3>
+        <p class="text-red-100 mb-6 sm:mb-8 text-sm sm:text-base max-w-2xl mx-auto">No esperes más. Contactanos hoy mismo y obtené un presupuesto sin compromiso.</p>
+        <div class="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center">
+            <a href="https://wa.me/{{ company_info.company_whatsapp }}" 
+               target="_blank"
+               rel="noopener noreferrer"
+               class="bg-white hover:bg-gray-100 text-primary font-bold px-6 sm:px-8 py-3 sm:py-4 rounded-full transition-all flex items-center justify-center gap-2 shadow-xl hover:shadow-2xl active:scale-95 touch-manipulation text-sm sm:text-base">
+                <i class="fa-brands fa-whatsapp text-lg"></i>
+                WhatsApp Inmediato
+            </a>
+            <a href="#contacto" 
+               class="bg-transparent hover:bg-white/10 border-2 border-white text-white px-6 sm:px-8 py-3 sm:py-4 rounded-full font-bold transition-all flex items-center justify-center gap-2 active:scale-95 touch-manipulation text-sm sm:text-base">
+                <i class="fa-solid fa-file-alt"></i>
+                Formulario Web
+            </a>
         </div>
     </div>
 </section>

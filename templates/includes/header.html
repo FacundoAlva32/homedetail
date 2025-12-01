@@ -1,45 +1,122 @@
-<!-- Navegación -->
-<nav class="fixed w-full z-50 bg-white/95 backdrop-blur-sm shadow-sm transition-all duration-300 nav-blur" id="navbar">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="flex justify-between items-center h-20">
-            <!-- Logo -->
-            <div class="flex-shrink-0 flex items-center gap-2 cursor-pointer" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">
-                <div class="w-10 h-10 bg-primary rounded-lg flex items-center justify-center text-white text-xl">
-                    <i class="fa-solid fa-droplet"></i>
-                </div>
-                <div>
-                    <span class="font-bold text-2xl text-secondary tracking-tight">HOME DETAIL</span>
-                    <p class="text-xs text-gray-500 uppercase tracking-widest">Hidrolavado Profesional</p>
-                </div>
-            </div>
+{% load static %}
+{% load static %}
 
-            <!-- Desktop Menu -->
-            <div class="hidden md:flex space-x-8 items-center">
-                <a href="#inicio" class="text-gray-600 hover:text-primary font-medium transition">Inicio</a>
-                <a href="#servicios" class="text-gray-600 hover:text-primary font-medium transition">Servicios</a>
-                <a href="#antes-despues" class="text-gray-600 hover:text-primary font-medium transition">Resultados</a>
-                <a href="#zonas" class="text-gray-600 hover:text-primary font-medium transition">Zonas</a>
-                <a href="#faq" class="text-gray-600 hover:text-primary font-medium transition">FAQ</a>
-                <a href="#contacto" class="bg-primary hover:bg-primary-dark text-white px-5 py-2.5 rounded-full font-semibold transition shadow-lg shadow-red-200">
-                    Pedir Presupuesto
+<!-- Navegación Mobile-First Optimizada -->
+<nav class="fixed w-full z-50 bg-white/95 backdrop-blur-sm supports-backdrop-blur:bg-white/60 shadow-sm transition-all duration-300" 
+     id="navbar"
+     style="backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);">
+    <div class="px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+        <div class="flex justify-between items-center h-16 md:h-20">
+            <!-- Logo Mobile-Optimized -->
+            <div class="flex-shrink-0 flex items-center">
+                <a href="/" 
+                   class="flex items-center gap-2 active:scale-95 touch-manipulation"
+                   aria-label="Ir al inicio">
+                    <img src="{% static 'images/logos/homedetail.png' %}" 
+                         alt="Home Detail - Hidrolavado Profesional" 
+                         class="h-10 w-auto object-contain max-w-[180px] md:max-w-none hover:scale-105 transition-transform duration-300"
+                         loading="eager">
                 </a>
             </div>
 
-            <!-- Mobile Button -->
+            <!-- Desktop Menu -->
+            <div class="hidden md:flex space-x-4 lg:space-x-6 items-center">
+                <a href="#inicio" 
+                   class="text-gray-600 hover:text-primary font-medium transition text-sm lg:text-base px-3 py-2 rounded-lg hover:bg-red-50 active:bg-red-100">
+                    Inicio
+                </a>
+                <a href="#servicios" 
+                   class="text-gray-600 hover:text-primary font-medium transition text-sm lg:text-base px-3 py-2 rounded-lg hover:bg-red-50 active:bg-red-100">
+                    Servicios
+                </a>
+                <a href="#antes-despues" 
+                   class="text-gray-600 hover:text-primary font-medium transition text-sm lg:text-base px-3 py-2 rounded-lg hover:bg-red-50 active:bg-red-100">
+                    Resultados
+                </a>
+                <a href="#proceso" 
+                   class="text-gray-600 hover:text-primary font-medium transition text-sm lg:text-base px-3 py-2 rounded-lg hover:bg-red-50 active:bg-red-100">
+                    Proceso
+                </a>
+                <a href="#zonas" 
+                   class="text-gray-600 hover:text-primary font-medium transition text-sm lg:text-base px-3 py-2 rounded-lg hover:bg-red-50 active:bg-red-100">
+                    Zonas
+                </a>
+                <a href="#contacto" 
+                   class="bg-primary hover:bg-primary-dark text-white px-5 py-2.5 rounded-full font-semibold transition text-sm lg:text-base active:scale-95 shadow-lg shadow-red-900/20 hover:shadow-xl">
+                    <i class="fa-solid fa-file-invoice-dollar mr-2"></i>
+                    Presupuesto
+                </a>
+            </div>
+
+            <!-- Mobile Menu Button -->
             <div class="md:hidden flex items-center">
-                <button id="mobile-menu-btn" class="text-gray-600 hover:text-primary focus:outline-none">
+                <button id="mobile-menu-btn" 
+                        class="text-gray-600 hover:text-primary focus:outline-none active:scale-95 touch-manipulation p-2 rounded-lg hover:bg-gray-100"
+                        aria-label="Abrir menú"
+                        aria-expanded="false">
                     <i class="fa-solid fa-bars text-2xl"></i>
                 </button>
             </div>
         </div>
     </div>
-    <!-- Mobile Menu Links -->
-    <div id="mobile-menu" class="md:hidden bg-white border-t">
-        <a href="#inicio" class="block py-3 px-4 text-gray-700 hover:bg-gray-50">Inicio</a>
-        <a href="#servicios" class="block py-3 px-4 text-gray-700 hover:bg-gray-50">Servicios</a>
-        <a href="#antes-despues" class="block py-3 px-4 text-gray-700 hover:bg-gray-50">Resultados</a>
-        <a href="#zonas" class="block py-3 px-4 text-gray-700 hover:bg-gray-50">Zonas</a>
-        <a href="#faq" class="block py-3 px-4 text-gray-700 hover:bg-gray-50">FAQ</a>
-        <a href="#contacto" class="block py-3 px-4 text-primary font-bold bg-gray-50">Pedir Presupuesto</a>
+    
+    <!-- Mobile Menu -->
+    <div id="mobile-menu" 
+         class="md:hidden bg-white/95 backdrop-blur-sm supports-backdrop-blur:bg-white/60 border-t shadow-lg transition-all duration-300 max-h-0 overflow-hidden"
+         style="backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);"
+         aria-hidden="true">
+        <div class="px-4 py-3 space-y-1">
+            <a href="#inicio" 
+               class="mobile-nav-link block py-3 px-3 text-gray-700 hover:text-primary hover:bg-gray-50 rounded-lg transition active:bg-gray-100 flex items-center gap-3">
+                <i class="fa-solid fa-home text-primary w-5 text-center"></i>
+                <span>Inicio</span>
+            </a>
+            <a href="#servicios" 
+               class="mobile-nav-link block py-3 px-3 text-gray-700 hover:text-primary hover:bg-gray-50 rounded-lg transition active:bg-gray-100 flex items-center gap-3">
+                <i class="fa-solid fa-broom text-primary w-5 text-center"></i>
+                <span>Servicios</span>
+            </a>
+            <a href="#antes-despues" 
+               class="mobile-nav-link block py-3 px-3 text-gray-700 hover:text-primary hover:bg-gray-50 rounded-lg transition active:bg-gray-100 flex items-center gap-3">
+                <i class="fa-solid fa-images text-primary w-5 text-center"></i>
+                <span>Resultados</span>
+            </a>
+            <a href="#proceso" 
+               class="mobile-nav-link block py-3 px-3 text-gray-700 hover:text-primary hover:bg-gray-50 rounded-lg transition active:bg-gray-100 flex items-center gap-3">
+                <i class="fa-solid fa-list-check text-primary w-5 text-center"></i>
+                <span>Proceso</span>
+            </a>
+            <a href="#zonas" 
+               class="mobile-nav-link block py-3 px-3 text-gray-700 hover:text-primary hover:bg-gray-50 rounded-lg transition active:bg-gray-100 flex items-center gap-3">
+                <i class="fa-solid fa-map-marker-alt text-primary w-5 text-center"></i>
+                <span>Zonas</span>
+            </a>
+            <a href="#contacto" 
+               class="mobile-nav-link block py-3 px-3 text-primary font-semibold bg-red-50 rounded-lg transition active:bg-red-100 flex items-center gap-3">
+                <i class="fa-solid fa-file-invoice-dollar w-5 text-center"></i>
+                <span>Pedir Presupuesto</span>
+            </a>
+        </div>
+        
+        <!-- Contacto rápido en mobile -->
+        <div class="border-t border-gray-200 px-4 py-4 bg-gray-50/50">
+            <div class="grid grid-cols-2 gap-3">
+                <a href="https://wa.me/{{ company_info.company_whatsapp }}" 
+                   target="_blank"
+                   rel="noopener noreferrer"
+                   class="bg-whatsapp hover:bg-green-600 text-white px-3 py-2.5 rounded-lg font-medium text-sm transition-all flex items-center justify-center gap-2 active:scale-95 shadow-md">
+                    <i class="fa-brands fa-whatsapp text-lg"></i>
+                    WhatsApp
+                </a>
+                <a href="tel:{{ company_info.company_phone|cut:'-' }}" 
+                   class="bg-gray-700 hover:bg-gray-800 text-white px-3 py-2.5 rounded-lg font-medium text-sm transition-all flex items-center justify-center gap-2 active:scale-95 shadow-md">
+                    <i class="fa-solid fa-phone text-lg"></i>
+                    Llamar
+                </a>
+            </div>
+        </div>
     </div>
 </nav>
+
+<!-- Spacer para el header fijo -->
+<div class="h-16 md:h-20"></div>
